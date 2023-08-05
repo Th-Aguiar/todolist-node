@@ -6,11 +6,16 @@
     <title>Template EJS - TODOLIST</title>
 </head>
 <body>
-    <% if (day === 'Domingo' || day === 'Sábado'){ %>
-        
-    }
-    <h1><%= day %></h1>
-    <p>Vamos nos esforçar</p>
-    <button>Trabalhar</button>
+    
+    <h1 style = 'color: blue'><%= today %></h1>
+
+    <ul>
+        <li><%= newListItem %></li>
+    </ul>
+
+    <form action="/" method="post">
+        <input type="text" name="todoInput" id="todo-input" placeholder="Digite seu TODO">
+        <button type="submit">Enviar</button>
+    </form>
 </body>
 </html>

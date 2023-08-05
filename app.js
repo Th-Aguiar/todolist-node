@@ -1,44 +1,46 @@
 const express = require('express');
 const app = express();
-const bodyParser = require("body-parser");
+//const bodyParser = require("body-parser"); Não usar, pois, o EXPRESS já possui um método interno de parser
 const port = 3000;
+
+//Usar um compressor do corpo requisição
+//Parser interno do Express
+app.use(express.urlencoded({extended: true}))
 
 //Configuração EJS
 app.set('view engine', 'ejs');
 
+//Rota principal
 app.get('/', (req, res) => {
+    //instância de um objeto date
     const date = new Date();
-    const today = date.getDay();
-    let day = '';
-
-    switch (today) {
-        case 0:
-            day = 'Domingo';
-            break;
-        case 1:
-            day = 'Segunda-Feira';
-            break;
-        case 2: 
-            day = 'Terça-Feira';
-            break;
-        case 3:
-            day = 'Quarta-Feira';
-            break;
-        case 4:
-            day = 'Quinta-Feira';
-            break;
-        case 5:
-            day = 'Sexta-feira';
-            break;
-        case 6:
-            day = 'Sábado';
-            break;
-        default:
-            console.log('Ocorreu algum erro no Switch');
-            break;
+    
+    // Configurações da formatação da data
+    let options = {
+        weekday: "long",
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
     }
     
-    res.render('list', {day: day});
+    //Pega o dia e data atual do sistema
+    let today = date.toLocaleString('pt-BR', options);
+    
+    //Renderização com parametros EJS
+    res.render('list', {
+        today: today,
+        newListItem: data
+    });
+})
+
+//Post Home
+app.post('/', (req, res) => {
+    //Armazenamento dos dados do corpo da requisição
+    const data = req.body.todoInput;
+    console.log(datas);
+
+    //redirecionamento
+    res.redirect('/')
 })
 
 app.listen(port, () => {
