@@ -10,7 +10,7 @@
     height: 100vh;
     background-image: linear-gradient(65deg,#ffffff 5%,#a4d4e0 75%,#ffffff);
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -46,9 +46,16 @@ p{
     display: flex;
     justify-content: center;
     text-align: center;
+    padding: 1rem;
     width: 23rem;
+    border-radius: 1rem;
+    border: 1px solid #7e7e7e88;
+    margin-bottom: 2rem;
 }
 
+input[type="checkbox"]{
+    margin-right: 20px;
+}
 
 .form{
     display: flex;
@@ -68,4 +75,9 @@ h1 {
     width: 15rem;
     height: 3rem;
     text-align: center;
+}
+
+footer{
+    margin-top: 5rem;
+    font-weight: bold;
 }
