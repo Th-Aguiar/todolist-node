@@ -4,28 +4,12 @@ const app = express();
 const port = 3000;
 //Path do node
 const path = require('path');
+const date = require(__dirname + "/modules/date.js");
 
 //Variavel de armazenamento
 let listItems = [];
 let workList = [];
 
-//Função para obtenção do dia atual
-const getDay = () => {
-    //instância de um objeto date
-    const date = new Date();
-    
-    // Configurações da formatação da data
-    let options = { 
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric"
-    }
-    //Pega o dia e data atual do sistema
-    let today = date.toLocaleString('pt-BR', options);
-    
-    return today;
-}
 
 //Usar um compressor do corpo requisição
 //Parser interno do Express
@@ -39,7 +23,8 @@ app.set('view engine', 'ejs');
 
 //Rota principal
 app.get('/', (req, res) => {
-    const today = getDay();
+    //Chamada da função getDate
+    const today = date.getDate();
 
     //Renderização com parametros EJS
     res.render('list', {
@@ -51,7 +36,7 @@ app.get('/', (req, res) => {
 
 //Rota Work
 app.get('/trabalho', (req,res) => {
-    const today = getDay();
+    const today = getDate();
 
     //Renderização com parametros EJS
     res.render('list', {
@@ -79,7 +64,7 @@ app.post('/', (req, res) => {
     } else {
         //Adicionar dados em uma array.
         listItems.push(data);
-        
+
         //redirecionamento
         res.redirect('/')
     }
